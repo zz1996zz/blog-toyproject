@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fastcampus.biz.domain.Blog;
 import com.fastcampus.biz.domain.BlogUser;
+import com.fastcampus.biz.persistence.BlogRepository;
 import com.fastcampus.biz.persistence.BlogUserRepository;
+import com.fastcampus.web.domain.UserInfo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +24,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LoginController {
 
-	private final BlogUserRepository repository;
+	private final BlogUserRepository blogUserRepository;
+	private final BlogRepository blogRepository;
 	
 	@GetMapping
 	public String login() {
@@ -30,13 +34,26 @@ public class LoginController {
 	
 	@PostMapping
 	public String loginUser(@RequestParam String username, @RequestParam String password, HttpServletRequest request) {
-		Optional<BlogUser> findUser = repository.findByUsername(username);
+		Optional<BlogUser> findUser = blogUserRepository.findByUsername(username);
 		
 		if (findUser.isPresent()) {
 			BlogUser user = findUser.get();
+			
 			if (user.getPassword().equals(password)) {
+				Optional<Blog> findBlog = blogRepository.findById(user.getUserId());
+				UserInfo userInfo;
 				HttpSession session = request.getSession();
-				session.setAttribute("loginUser", user.getUserId());
+				
+				if (findBlog.isPresent()) {
+					userInfo = new UserInfo();
+					userInfo.setUserId(user.getUserId());
+					userInfo.setUserhasBlog(true);
+				} else {
+					userInfo = new UserInfo();
+					userInfo.setUserId(user.getUserId());
+					userInfo.setUserhasBlog(false);
+				}
+				session.setAttribute("loginUser", userInfo);
 			}
 		}
 		return "redirect:/";

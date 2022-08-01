@@ -34,8 +34,14 @@
 						<a href="/logout"><b>로그아웃</b></a>&nbsp;&nbsp;
 					</c:when>
 				</c:choose>
-    			<a href="#"><b>블로그등록</b></a>&nbsp;&nbsp;
-      			<a href="#"><b>블로그바로가기</b></a>&nbsp;&nbsp;
+				<c:choose>
+					<c:when test="${loginUser != null && loginUser.userhasBlog == false }">
+						<a href="#"><b>블로그등록</b></a>&nbsp;&nbsp;
+					</c:when>
+					<c:when test="${loginUser != null && loginUser.userhasBlog == true }">
+						<a href="#"><b>블로그바로가기</b></a>&nbsp;&nbsp;
+					</c:when>
+				</c:choose>
 				<input type="text" name="searchKeyword"	size="50">
 				<input type="submit" value="검색">
 			</td>
