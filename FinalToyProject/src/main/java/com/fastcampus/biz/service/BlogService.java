@@ -53,4 +53,14 @@ public class BlogService {
 		blog.setTitle(updateBlog.getTitle());
 		blog.setTag(updateBlog.getTag());
 	}
+	
+	@Transactional
+	public void deleteBlog(int blogId) {
+		Blog blog = blogRepository.findById(blogId).get();
+		if (blog.getStatus().equals("운영")) {
+			blog.setStatus("삭제요청");			
+		} else {
+			blog.setStatus("운영");
+		}
+	}
 }

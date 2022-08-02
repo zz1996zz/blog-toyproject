@@ -60,4 +60,10 @@ public class BlogController {
 		blogService.updateBlog(id, updateBlog);
 		return "redirect:/blog/shortcuts/{id}";
 	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteBlog(@PathVariable int id) {
+		blogService.deleteBlog(id);
+		return "redirect:/blog/shortcuts/{id}";
+	}
 }
