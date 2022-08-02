@@ -11,7 +11,7 @@
 <center>
 
 <!-- 검색 화면 시작 -->
-<form action="#" method="post">
+<form action="/find" method="post">
 	<table width="720" height=200 border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="100%" colspan="10" align="center">
@@ -36,10 +36,10 @@
 				</c:choose>
 				<c:choose>
 					<c:when test="${loginUser != null && loginUser.userhasBlog == false }">
-						<a href="#"><b>블로그등록</b></a>&nbsp;&nbsp;
+						<a href="/blog/insert"><b>블로그등록</b></a>&nbsp;&nbsp;
 					</c:when>
 					<c:when test="${loginUser != null && loginUser.userhasBlog == true }">
-						<a href="#"><b>블로그바로가기</b></a>&nbsp;&nbsp;
+						<a href="/blog/shortcuts"><b>블로그바로가기</b></a>&nbsp;&nbsp;
 					</c:when>
 				</c:choose>
 				<input type="text" name="searchKeyword"	size="50">
@@ -53,13 +53,14 @@
 
 <!-- 블로그 목록 시작 -->
 <br><br>
+<c:if test="${blogList != null}">
 <table width="550" border="0" cellpadding="1" cellspacing="1">
 	<tr bgcolor="#9DCFFF">
 		<th height="30"><font color="white">블로그 제목</font></th>
 		<th width="100"><font color="white">상태</font></th>
-		<th width="100"><font color="white">삭제</font></th>
+		<c:if test="${loginUser.role == 'ADMIN' }"><th width="100"><font color="white">삭제</font></th></c:if>
 	</tr>
-	<tr>
+	<!-- <tr>
 		<td align="left"><a href="#">Gurum의 블로그</a></td>
 		<td align="center">운영</td>
 		<td align="center">-</td>
@@ -68,8 +69,16 @@
 		<td align="left"><a href="#">bbb의 블로그</a></td>
 		<td align="center">삭제 요청</td>
 		<td align="center"><a href="#"><img height="9" src="images/delete.jpg" border="0"></a></td>
-	</tr>
+	</tr> -->
+	<c:forEach var="blog" items="${blogList }">
+		<tr>
+			<td align="left"><a href="#">${blog.title }</a></td>
+			<td align="center">${blog.status }</td>
+			<c:if test="${loginUser.role == 'ADMIN' && blog.status == '삭제요청' }"><td align="center"><a href="#"><img height="9" src="images/delete.jpg" border="0"></a></td></c:if>
+		</tr>
+	</c:forEach>
 </table>
+</c:if>
 <!-- 블로그 목록 종료 -->
 
 </center>
