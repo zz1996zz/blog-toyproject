@@ -45,9 +45,9 @@ public class LoginController {
 				HttpSession session = request.getSession();
 				
 				if (findBlog.isPresent()) {
-					userInfo = new UserInfo(user.getUserId(), user.getRole(), true);
+					userInfo = new UserInfo(user.getUserId(), user.getRole());
 				} else {
-					userInfo = new UserInfo(user.getUserId(), user.getRole(), false);
+					userInfo = new UserInfo(user.getUserId(), user.getRole());
 				}
 				session.setAttribute("loginUser", userInfo);
 			}

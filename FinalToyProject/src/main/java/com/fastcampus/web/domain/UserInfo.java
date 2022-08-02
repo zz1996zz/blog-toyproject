@@ -9,5 +9,4 @@ public class UserInfo {
 
 	private int userId;
 	private String role;
-	private boolean isUserhasBlog;
 }

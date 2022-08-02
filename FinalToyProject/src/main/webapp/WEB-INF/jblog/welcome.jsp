@@ -26,6 +26,12 @@
 		</tr>				
 		<tr>
 			<td width="70%" colspan="2" align="center">
+			<c:set var="contains" value="false" />
+				<c:forEach var="blog" items="${blogList }">
+					<c:if test="${loginUser.userId == blog.blogId }">
+						<c:set var="contains" value="true" />
+					</c:if>
+				</c:forEach>
 				<c:choose>
 					<c:when test="${loginUser == null }">
 						<a href="/login"><b>로그인</b></a>&nbsp;&nbsp;
@@ -35,10 +41,10 @@
 					</c:when>
 				</c:choose>
 				<c:choose>
-					<c:when test="${loginUser != null && loginUser.userhasBlog == false }">
+					<c:when test="${loginUser != null && contains == false }">
 						<a href="/blog/insert"><b>블로그등록</b></a>&nbsp;&nbsp;
 					</c:when>
-					<c:when test="${loginUser != null && loginUser.userhasBlog == true }">
+					<c:when test="${loginUser != null && contains == true }">
 						<a href="/blog/shortcuts"><b>블로그바로가기</b></a>&nbsp;&nbsp;
 					</c:when>
 				</c:choose>
@@ -74,7 +80,10 @@
 		<tr>
 			<td align="left"><a href="#">${blog.title }</a></td>
 			<td align="center">${blog.status }</td>
-			<c:if test="${loginUser.role == 'ADMIN' && blog.status == '삭제요청' }"><td align="center"><a href="#"><img height="9" src="images/delete.jpg" border="0"></a></td></c:if>
+			<c:choose>
+				<c:when test="${loginUser.role == 'ADMIN' && blog.status == '운영' }"><td align="center">-</td></c:when>
+				<c:when test="${loginUser.role == 'ADMIN' && blog.status == '삭제요청' }"><td align="center"><a href="#"><img height="9" src="images/delete.jpg" border="0"></a></td></c:when>
+			</c:choose>
 		</tr>
 	</c:forEach>
 </table>
