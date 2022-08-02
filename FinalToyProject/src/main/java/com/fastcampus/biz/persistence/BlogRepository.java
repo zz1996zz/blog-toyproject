@@ -11,6 +11,6 @@ import com.fastcampus.biz.domain.Blog;
 @Repository
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
 
-	List<Blog> findBytitle(String title);
-	List<Blog> findBytag(String tag); 
+	List<Blog> findByTitleContains(String title);
+	List<Blog> findByTagContains(String tag); 
 }

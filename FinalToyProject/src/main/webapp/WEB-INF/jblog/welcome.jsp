@@ -59,23 +59,13 @@
 
 <!-- 블로그 목록 시작 -->
 <br><br>
-<c:if test="${blogList != null}">
+<c:if test="${!empty blogList}">
 <table width="550" border="0" cellpadding="1" cellspacing="1">
 	<tr bgcolor="#9DCFFF">
 		<th height="30"><font color="white">블로그 제목</font></th>
 		<th width="100"><font color="white">상태</font></th>
 		<c:if test="${loginUser.role == 'ADMIN' }"><th width="100"><font color="white">삭제</font></th></c:if>
 	</tr>
-	<!-- <tr>
-		<td align="left"><a href="#">Gurum의 블로그</a></td>
-		<td align="center">운영</td>
-		<td align="center">-</td>
-	</tr>
-	<tr>
-		<td align="left"><a href="#">bbb의 블로그</a></td>
-		<td align="center">삭제 요청</td>
-		<td align="center"><a href="#"><img height="9" src="images/delete.jpg" border="0"></a></td>
-	</tr> -->
 	<c:forEach var="blog" items="${blogList }">
 		<tr>
 			<td align="left"><a href="#">${blog.title }</a></td>
