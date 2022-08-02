@@ -27,7 +27,7 @@
 					<c:when test="${loginUser != null }"><a href="/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;&nbsp;</c:when>
 				</c:choose>
 				<c:if test="${loginUser.userId eq blog.blogId }">
-					<a href="/blog/manage">블로그관리</a>&nbsp;&nbsp;&nbsp;
+					<a href="/blog/manage/${blog.blogId }">블로그관리</a>&nbsp;&nbsp;&nbsp;
 					<a href="/blog/shortcuts/${blog.blogId }">블로그메인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</c:if>
 				</td>

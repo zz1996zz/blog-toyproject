@@ -8,6 +8,7 @@ import com.fastcampus.biz.domain.Blog;
 import com.fastcampus.biz.domain.Category;
 import com.fastcampus.biz.persistence.BlogRepository;
 import com.fastcampus.biz.persistence.CategoryRepository;
+import com.fastcampus.web.domain.UpdateBlog;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,5 +45,12 @@ public class BlogService {
 	public Blog getBlog(int blogId) {
 		log.info("blogId={}", blogId);
 		return blogRepository.findById(blogId).get();
+	}
+	
+	@Transactional
+	public void updateBlog(int blogId, UpdateBlog updateBlog) {
+		Blog blog = blogRepository.findById(blogId).get();
+		blog.setTitle(updateBlog.getTitle());
+		blog.setTag(updateBlog.getTag());
 	}
 }

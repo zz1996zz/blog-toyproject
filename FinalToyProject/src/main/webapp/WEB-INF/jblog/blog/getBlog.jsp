@@ -12,7 +12,7 @@
 			<b>기본설정</b>&nbsp;&nbsp;
 			<a href="#"><b>카테고리</b></a>&nbsp;&nbsp;
 			<a href="#"><b>글작성</b></a>&nbsp;&nbsp; 
-			<a href="javascript:popup();"><b>블로그삭제</b></a>&nbsp;&nbsp;
+			<a href="#"><b>블로그삭제</b></a>&nbsp;&nbsp;
 			<!-- 메뉴 끝 -->
 		</td>
 	</tr>
@@ -20,15 +20,15 @@
 	<tr><td height="10">&nbsp;</td>
 		<td>
 			<!-- 작업 화면  시작 -->
-			<form action="#" method="post">
+			<form action="/blog/update/${blog.blogId }" method="post">
 			<table width="720" border="0" cellpadding="1" cellspacing="1">
 				<tr>
 					<td width="150">블로그 제목 :</td>
-					<td><input type="text" size="40" name="title" value="수정 전 타이틀"></td>
+					<td><input type="text" size="40" name="title" value="${blog.title }"></td>
 				</tr>
 				<tr>
 					<td width="150">블로그 태그 :</td>
-					<td><input type="text" size="50" name="tag" value="수정 전 태그"></td>
+					<td><input type="text" size="50" name="tag" value="${blog.tag }"></td>
 				</tr>
 				<tr>
 					<td width="150">로고이미지 :</td>

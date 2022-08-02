@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fastcampus.biz.service.BlogService;
 import com.fastcampus.biz.service.PostService;
+import com.fastcampus.web.domain.UpdateBlog;
 import com.fastcampus.web.domain.UserInfo;
 
 import lombok.RequiredArgsConstructor;
@@ -47,8 +49,15 @@ public class BlogController {
 		return "blog/blogMain";
 	}
 	
-	@GetMapping("/manage")
-	public String manage() {
+	@GetMapping("/manage/{blogId}")
+	public String manage(@PathVariable int blogId, Model model) {
+		model.addAttribute("blog", blogService.getBlog(blogId));
 		return "blog/getBlog";
+	}
+	
+	@PostMapping("/update/{id}")
+	public String updateBlog(@PathVariable int id, @ModelAttribute UpdateBlog updateBlog) {
+		blogService.updateBlog(id, updateBlog);
+		return "redirect:/blog/shortcuts/{id}";
 	}
 }
