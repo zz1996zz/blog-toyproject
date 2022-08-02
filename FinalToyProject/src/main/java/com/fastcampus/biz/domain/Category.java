@@ -22,5 +22,5 @@ public class Category {
 	
 	private String description;
 	
-	private String displayType;
+	private String displayType; //TITLE or MIXED
 }

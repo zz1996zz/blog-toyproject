@@ -7,7 +7,7 @@
 	<title>JBlog 로그인</title>
 </head>
 <body>
-	<form action="#" method="post">
+	<form action="/blog/insert" method="post">
 	<table width="100%" height=320 border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td height=40 colspan="10">&nbsp;</td>
@@ -18,7 +18,7 @@
 		<tr>
 			<td height="20" colspan="10" align="center" class="tdcontent">블로그 제목 : 
 				<input type="text" name="title" size="40">&nbsp;&nbsp;
-				<input type="submit" value="수정하기">
+				<input type="submit" value="등록하기">
 			</td>
 		</tr>
 		<tr><td colspan="10">&nbsp;</td></tr>

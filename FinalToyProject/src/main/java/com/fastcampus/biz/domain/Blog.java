@@ -12,7 +12,7 @@ public class Blog {
 	@Id
 	private int blogId;
 	
-	private String status;
+	private String status; //운영 or 삭제요청
 	
 	private String tag;
 	

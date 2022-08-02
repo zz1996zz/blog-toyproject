@@ -11,4 +11,8 @@ import lombok.RequiredArgsConstructor;
 public class CategoryService {
 
 	private final CategoryRepository categoryRepository;
+	
+	public void insertCategory() {
+		
+	}
 }
