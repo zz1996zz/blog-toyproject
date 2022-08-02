@@ -15,7 +15,7 @@
 	<table width="720" height=200 border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="100%" colspan="10" align="center">
-				<img src="images/logo.jpg" border="0">
+				<img src="/images/logo.jpg" border="0">
 			</td>
 		</tr>				
 		<tr>
@@ -45,7 +45,7 @@
 						<a href="/blog/insert"><b>블로그등록</b></a>&nbsp;&nbsp;
 					</c:when>
 					<c:when test="${loginUser != null && contains == true }">
-						<a href="/blog/shortcuts"><b>블로그바로가기</b></a>&nbsp;&nbsp;
+						<a href="/blog/shortcuts/${loginUser.userId }"><b>블로그바로가기</b></a>&nbsp;&nbsp;
 					</c:when>
 				</c:choose>
 				<input type="text" name="searchKeyword"	size="50">
@@ -68,11 +68,11 @@
 	</tr>
 	<c:forEach var="blog" items="${blogList }">
 		<tr>
-			<td align="left"><a href="#">${blog.title }</a></td>
+			<td align="left"><a href="/blog/shortcuts/${blog.blogId }">${blog.title }</a></td>
 			<td align="center">${blog.status }</td>
 			<c:choose>
 				<c:when test="${loginUser.role == 'ADMIN' && blog.status == '운영' }"><td align="center">-</td></c:when>
-				<c:when test="${loginUser.role == 'ADMIN' && blog.status == '삭제요청' }"><td align="center"><a href="#"><img height="9" src="images/delete.jpg" border="0"></a></td></c:when>
+				<c:when test="${loginUser.role == 'ADMIN' && blog.status == '삭제요청' }"><td align="center"><a href="#"><img height="9" src="/images/delete.jpg" border="0"></a></td></c:when>
 			</c:choose>
 		</tr>
 	</c:forEach>

@@ -40,4 +40,9 @@ public class BlogService {
 		categoryRepository.save(category);
 		blogRepository.save(blog);
 	}
+	
+	public Blog getBlog(int blogId) {
+		log.info("blogId={}", blogId);
+		return blogRepository.findById(blogId).get();
+	}
 }

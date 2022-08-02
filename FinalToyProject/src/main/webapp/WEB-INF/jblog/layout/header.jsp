@@ -12,20 +12,24 @@
 	}
 </script>
 </head>
-<body background="images/kubrickbgcolor.jpg">
+<body background="/images/kubrickbgcolor.jpg">
 	<center>
-		<table background="images/kubrickheader.jpg" width="760" height="200" border="0" cellpadding="0" cellspacing="0">
+		<table background="/images/kubrickheader.jpg" width="760" height="200" border="0" cellpadding="0" cellspacing="0">
 			<tr><td height="60">&nbsp;</td></tr>
 			<!-- 블로그 제목과 태그 시작 -->
-			<tr><td height="60" align="center"><h1><font color="white">테스트 블로그</font></h1></td></tr>
-			<tr><td height="20" align="center"><h3><font color="white">NO Tags</font></h3></td></tr>
+			<tr><td height="60" align="center"><h1><font color="white">${blog.title }</font></h1></td></tr>
+			<tr><td height="20" align="center"><h3><font color="white">${blog.tag }</font></h3></td></tr>
 			<!-- 블로그 제목과 태그 끝 -->
 			<tr align="right">
 				<td>
-					<a href="#">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="#">로그아웃</a>&nbsp;&nbsp;&nbsp;
-					<a href="#">블로그관리</a>&nbsp;&nbsp;&nbsp;
-					<a href="#">블로그메인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<c:choose>
+					<c:when test="${loginUser == null }"><a href="/login">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</c:when>
+					<c:when test="${loginUser != null }"><a href="/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;&nbsp;</c:when>
+				</c:choose>
+				<c:if test="${loginUser.userId eq blog.blogId }">
+					<a href="/blog/manage">블로그관리</a>&nbsp;&nbsp;&nbsp;
+					<a href="/blog/shortcuts/${blog.blogId }">블로그메인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</c:if>
 				</td>
 			</tr>
 		</table>

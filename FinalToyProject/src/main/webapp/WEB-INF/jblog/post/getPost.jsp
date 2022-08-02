@@ -2,7 +2,7 @@
 
 <%@include file="../layout/header.jsp" %>
 
-<table background="images/kubrickbg.jpg" width="760" height="40" border="0" cellpadding="0" cellspacing="0">
+<table background="/images/kubrickbg.jpg" width="760" height="40" border="0" cellpadding="0" cellspacing="0">
 	<tr><td height="10" colspan="10">&nbsp;</td></tr>
 	<tr>
 		<td height="10" width="20">&nbsp;</td>

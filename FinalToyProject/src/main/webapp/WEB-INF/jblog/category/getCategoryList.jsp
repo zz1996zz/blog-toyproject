@@ -2,7 +2,7 @@
 
 <%@include file="../layout/header.jsp" %>
 
-<table background="images/kubrickbg.jpg" width="760" height="40" border="0" cellpadding="0" cellspacing="0">
+<table background="/images/kubrickbg.jpg" width="760" height="40" border="0" cellpadding="0" cellspacing="0">
 	<tr><td height="10" colspan="10">&nbsp;</td></tr>
 	<tr><td height="10" width="20">&nbsp;</td>
 		<td width="530" valign="top">
@@ -38,7 +38,7 @@
 				<td align="center">제목 + 내용</td>
 				<td>세미나 관련 포스트만 등록합니다.</td>
 				<td align="center">
-					&nbsp;<a href="#"><img height="9" src="images/delete.jpg" border="0"></a>
+					&nbsp;<a href="#"><img height="9" src="/images/delete.jpg" border="0"></a>
 				</td>
 			</tr>
 			</table> 

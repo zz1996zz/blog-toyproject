@@ -3,7 +3,7 @@
 
 <%@include file="../layout/header.jsp" %>
 		
-<table background="images/kubrickbg.jpg" width="760" height="300" border="0" cellpadding="0" cellspacing="0">
+<table background="/images/kubrickbg.jpg" width="760" height="300" border="0" cellpadding="0" cellspacing="0">
 	<tr><td height="10" colspan="10">&nbsp;</td></tr>
 	<tr>
 		<td height="10" width="20">&nbsp;</td>
@@ -32,7 +32,7 @@
 				</tr>
 				<tr>
 					<td width="150">로고이미지 :</td>
-					<td><img height="80" src="images/logo.jpg" border="0"></td>
+					<td><img height="80" src="/images/logo.jpg" border="0"></td>
 				</tr>
 				<tr>
 					<td height="40" colspan="10" align="center">
