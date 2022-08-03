@@ -20,6 +20,8 @@ public class BlogService {
 
 	private final BlogRepository blogRepository;
 	private final CategoryRepository categoryRepository;
+	private final CategoryService categoryService;
+	private final PostService postService;
 	
 	@Transactional
 	public void insertBlog(String title, int userId) {
@@ -54,12 +56,19 @@ public class BlogService {
 	}
 	
 	@Transactional
-	public void deleteBlog(int blogId) {
+	public void changeBlogStatus(int blogId) {
 		Blog blog = blogRepository.findById(blogId).get();
 		if (blog.getStatus().equals("운영")) {
 			blog.setStatus("삭제요청");			
 		} else {
 			blog.setStatus("운영");
 		}
+	}
+	
+	@Transactional
+	public void deleteBlog(int blogId) {
+		blogRepository.deleteById(blogId);
+		categoryService.deleteCategoryByBlogId(blogId);
+		postService.deletePostByBlogId(blogId);
 	}
 }

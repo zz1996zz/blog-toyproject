@@ -52,4 +52,10 @@ public class PostController {
 		postService.updatePost(postId, requestPost);
 		return "redirect:/blog/shortcuts/{blogId}";
 	}
+	
+	@GetMapping("/{blogId}/{postId}")
+	public String deletePost(@PathVariable int postId) {
+		postService.deletePostByPostId(postId);
+		return "redirect:/blog/shortcuts/{blogId}";
+	}
 }

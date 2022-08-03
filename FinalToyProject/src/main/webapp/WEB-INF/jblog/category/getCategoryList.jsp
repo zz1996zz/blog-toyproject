@@ -45,7 +45,7 @@
 					<c:choose>
 						<c:when test="${cg.categoryName == '미분류' }"><td align="center">&nbsp;삭제불가</td></c:when>
 						<c:when test="${cg.categoryName != '미분류' }">
-							<td align="center">&nbsp;<a href="#"><img height="9" src="/images/delete.jpg" border="0"></a></td>
+							<td align="center">&nbsp;<a href="/category/${blog.blogId }/${cg.categoryId }"><img height="9" src="/images/delete.jpg" border="0"></a></td>
 						</c:when>
 					</c:choose>
 				</tr>

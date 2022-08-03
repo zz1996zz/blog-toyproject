@@ -37,4 +37,13 @@ public class CategoryService {
 		category.setDescription(updateCategory.getDescription());
 		category.setDisplayType(updateCategory.getDisplayType());
 	}
+	
+	@Transactional
+	public void deleteCategoryByCategoryId(int categoryId) {
+		categoryRepository.deleteById(categoryId);
+	}
+	
+	public void deleteCategoryByBlogId(int blogId) {
+		categoryRepository.deleteByBlogId(blogId);
+	}
 }

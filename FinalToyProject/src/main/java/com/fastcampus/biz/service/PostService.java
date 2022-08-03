@@ -44,4 +44,13 @@ public class PostService {
 		post.setContent(requestPost.getContent());
 		post.setTitle(requestPost.getTitle());
 	}
+	
+	@Transactional
+	public void deletePostByPostId(int postId) {
+		postRepository.deleteById(postId);
+	}
+	
+	public void deletePostByBlogId(int blogId) {
+		postRepository.deleteByBlogId(blogId);
+	}
 }

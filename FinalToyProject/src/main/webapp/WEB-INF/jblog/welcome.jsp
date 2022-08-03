@@ -73,7 +73,7 @@
 			<td align="center">${blog.status }</td>
 			<c:choose>
 				<c:when test="${loginUser.role == 'ADMIN' && blog.status == '운영' }"><td align="center">-</td></c:when>
-				<c:when test="${loginUser.role == 'ADMIN' && blog.status == '삭제요청' }"><td align="center"><a href="#"><img height="9" src="/images/delete.jpg" border="0"></a></td></c:when>
+				<c:when test="${loginUser.role == 'ADMIN' && blog.status == '삭제요청' }"><td align="center"><a href="/blog/${blog.blogId }"><img height="9" src="/images/delete.jpg" border="0"></a></td></c:when>
 			</c:choose>
 		</tr>
 	</c:forEach>

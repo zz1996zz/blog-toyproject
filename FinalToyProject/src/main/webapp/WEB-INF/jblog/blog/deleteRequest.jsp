@@ -15,17 +15,31 @@
 </head>
 <body>
 <center>
-	<form action="#" method="post">
+	<form action="/blog/status/${blog.blogId }" method="post">
 	<table width="450" height="100" border="0" cellpadding="0" cellspacing="0">
-		<tr>
-			<td width="50" rowspan="3" align="center"><img src="images/worning.jpg" border="0"></td>
-			<td width="350"><b><font color="red">블로그 삭제를 관리자에게 요청하시겠습니까 ?</font></b><br></td>
-		</tr>
-		<tr>
-			<td width="350"><br>
-			<br> 동의하시면 관리자 확인후 삭제 처리 됩니다. 
-			<br>그리고 블로그 내의 모든 데이터는 <font color="red">삭제</font>됩니다.</td>
-		</tr>
+		<c:choose>
+			<c:when test="${blog.status == '운영' }">
+				<tr>
+					<td width="50" rowspan="3" align="center"><img src="/images/worning.jpg" border="0"></td>
+					<td width="350"><b><font color="red">블로그 삭제를 관리자에게 요청하시겠습니까 ?</font></b><br></td>
+				</tr>
+				<tr>
+					<td width="350"><br>
+					<br> 동의하시면 관리자 확인후 삭제 처리 됩니다. 
+					<br>그리고 블로그 내의 모든 데이터는 <font color="red">삭제</font>됩니다.</td>
+				</tr>
+			</c:when>
+			<c:when test="${blog.status == '삭제요청' }">
+				<tr>
+					<td width="50" rowspan="3" align="center"><img src="/images/worning.jpg" border="0"></td>
+					<td width="350"><b><font color="red">블로그 삭제요청을 취소하시겠습니까 ?</font></b><br></td>
+				</tr>
+				<tr>
+					<td width="350"><br>
+					<br> 동의하시면 삭제요청이 취소됩니다.
+				</tr>
+			</c:when>
+		</c:choose>
 		<tr>
 			<td colspan="2" align="center"><br> 
 			<input type="submit" value="동의" onclick="goMain();" /> 

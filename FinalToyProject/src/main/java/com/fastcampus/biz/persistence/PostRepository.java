@@ -11,4 +11,5 @@ import com.fastcampus.biz.domain.Post;
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
 	List<Post> findByBlogId(int blogId);
+	void deleteByBlogId(int blogId);
 }

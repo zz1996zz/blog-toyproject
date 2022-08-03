@@ -52,4 +52,10 @@ public class CategoryController {
 		categoryService.updateCategory(categoryId, updateCategory);
 		return "redirect:/category/getCategoryList/{blogId}/insert";
 	}
+	
+	@GetMapping("/{blogId}/{categoryId}")
+	public String deleteCategory(@PathVariable int categoryId) {
+		categoryService.deleteCategoryByCategoryId(categoryId);
+		return "redirect:/category/getCategoryList/{blogId}/insert";
+	}
 }

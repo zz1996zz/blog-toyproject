@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,9 +62,22 @@ public class BlogController {
 		return "redirect:/blog/shortcuts/{id}";
 	}
 	
-	@GetMapping("/delete/{id}")
-	public String deleteBlog(@PathVariable int id) {
-		blogService.deleteBlog(id);
-		return "redirect:/blog/shortcuts/{id}";
+	@GetMapping("/status/{blogId}")
+	public String isChangeBlogStatus(@PathVariable int blogId, Model model) {
+		model.addAttribute("blog", blogService.getBlog(blogId));
+		return "blog/deleteRequest";
 	}
+	
+	@PostMapping("/status/{blogId}")
+	public String changeBlogStatus(@PathVariable int blogId) {
+		blogService.changeBlogStatus(blogId);
+		return "redirect:/blog/shortcuts/{blogId}";
+	}
+	
+	@GetMapping("/{blogId}")
+	public String deleteBlog(@PathVariable int blogId) {
+		blogService.deleteBlog(blogId);
+		return "redirect:/";
+	}
+	
 }
