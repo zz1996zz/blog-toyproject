@@ -20,21 +20,22 @@
 		<td>
 		
 			<!-- 포스트 수정화면 시작 -->
-			<form action="#" method="post">
+			<form action="/posts/update/${blog.blogId }/${post.postId }" method="post">
 				<table width="720" border="0" cellpadding="1" cellspacing="1">
 					<tr>
 						<td>제목 :</td>
 						<td>
-							<input type="text" size="50" name="title" value=" 수정할 포스트 제목">
+							<input type="text" size="50" name="title" value="${post.title }">
 							<select name="categoryId">
-								<option selected>미분류</option>
-								<option>세미나</option>
+								<c:forEach var="cg" items="${categoryList }">
+									<option value="${cg.categoryId }" <c:if test="${cg.categoryId == post.categoryId }">selected</c:if>>${cg.categoryName }</option>
+								</c:forEach>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<td>내용 :</td>
-						<td colspan="10"><textarea name="content" rows="10" cols="80">수정할 포스트 내용</textarea></td>
+						<td colspan="10"><textarea name="content" rows="10" cols="80">${post.content }</textarea></td>
 					</tr>
 					<tr><td height="5">&nbsp;</td></tr>
 					<tr><td colspan="10" align="center">&nbsp;<input type="submit" value="수정하기"></td></tr>

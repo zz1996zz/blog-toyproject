@@ -17,7 +17,7 @@
 					<h3><font color="green">${post.title }</font></h3>
 					${post.content }<br>
 					</td>
-					<td align="right"><a href="#">수정</a> / <a href="#">삭제</a></td>
+					<td align="right"><a href="/posts/update/${blog.blogId }/${post.postId}">수정</a> / <a href="#">삭제</a></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">

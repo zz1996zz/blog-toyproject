@@ -35,8 +35,21 @@ public class PostController {
 	
 	@PostMapping("/insert/{blogId}")
 	public String insertPost(@ModelAttribute RequestPost requestPost) {
-		log.info("requestPost={}", requestPost);
 		postService.insertPost(requestPost);
+		return "redirect:/blog/shortcuts/{blogId}";
+	}
+	
+	@GetMapping("/update/{blogId}/{postId}")
+	public String getUpdatePost(@PathVariable int blogId, @PathVariable int postId, Model model) {
+		model.addAttribute("blog", blogService.getBlog(blogId));
+		model.addAttribute("post", postService.getPost(postId));
+		model.addAttribute("categoryList", categoryService.getCategoryList(blogId));
+		return "post/getPost";
+	}
+	
+	@PostMapping("/update/{blogId}/{postId}")
+	public String updatePost(@ModelAttribute RequestPost requestPost, @PathVariable int postId) {
+		postService.updatePost(postId, requestPost);
 		return "redirect:/blog/shortcuts/{blogId}";
 	}
 }
