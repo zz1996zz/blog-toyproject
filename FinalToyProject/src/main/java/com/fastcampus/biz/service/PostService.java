@@ -23,8 +23,11 @@ public class PostService {
 	}
 	
 	public List<Post> getPosts(int blogId) {
-		List<Post> posts = postRepository.findByBlogId(blogId);
-		return posts;
+		return postRepository.findByBlogId(blogId);
+	}
+	
+	public List<Post> getPostsByCategoryId(int categoryId) {
+		return postRepository.findByCategoryId(categoryId);
 	}
 	
 	public void insertPost(RequestPost requestPost) {

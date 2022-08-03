@@ -42,7 +42,6 @@ public class CategoryController {
 	
 	@PostMapping("/insert/{blogId}")
 	public String insertCategory(@ModelAttribute Category category) {
-		log.info("category={}", category);
 		categoryService.insertCategory(category);
 		return "redirect:/category/getCategoryList/{blogId}/insert";
 	}

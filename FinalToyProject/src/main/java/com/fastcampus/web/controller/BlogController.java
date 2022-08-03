@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fastcampus.biz.service.BlogService;
+import com.fastcampus.biz.service.CategoryService;
 import com.fastcampus.biz.service.PostService;
 import com.fastcampus.web.domain.UpdateBlog;
 import com.fastcampus.web.domain.UserInfo;
@@ -27,6 +28,7 @@ public class BlogController {
 
 	private final BlogService blogService;
 	private final PostService postService;
+	private final CategoryService categoryService;
 	
 	@GetMapping("/insert")
 	public String getBlogInsertForm() {
@@ -47,6 +49,15 @@ public class BlogController {
 	public String getBlog(@PathVariable int id, Model model) {
 		model.addAttribute("blog", blogService.getBlog(id));
 		model.addAttribute("posts", postService.getPosts(id));
+		model.addAttribute("categoryList", categoryService.getCategoryList(id));
+		return "blog/blogMain";
+	}
+	
+	@GetMapping("/shortcuts/{id}/{categoryId}")
+	public String getBlogByCategory(@PathVariable int id, @PathVariable int categoryId, Model model) {
+		model.addAttribute("blog", blogService.getBlog(id));
+		model.addAttribute("posts", postService.getPostsByCategoryId(categoryId));
+		model.addAttribute("categoryList", categoryService.getCategoryList(id));
 		return "blog/blogMain";
 	}
 	

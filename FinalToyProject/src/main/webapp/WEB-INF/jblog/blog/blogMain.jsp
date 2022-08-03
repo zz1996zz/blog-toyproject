@@ -40,12 +40,11 @@
 			<tr><td><img height="80" src="/images/j2eelogo.jpg" border="0"></td></tr>
 			<tr><td height="5">&nbsp;</td></tr>
 			<tr><td><b>카테고리</b></td></tr>
-			<tr>
-				<td><a href="#"><b>미분류</b></a></td>
-			</tr>
-			<tr>
-				<td><a href="#"><b>세미나</b></a></td>
-			</tr>
+			<c:forEach var="cg" items="${categoryList }">
+				<tr>
+					<td><a href="/blog/shortcuts/${blog.blogId }/${cg.categoryId }"><b>${cg.categoryName }</b></a></td>
+				</tr>
+			</c:forEach>
 			<tr><td height="5">&nbsp;</td></tr>
 			<tr><td align="center"><a href="/"><img width="80" src="/images/logo.jpg" border="0"></a></td></tr>
 		</table> 
