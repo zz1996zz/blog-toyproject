@@ -43,7 +43,7 @@ public class BlogController {
 	}
 	
 	@GetMapping("/shortcuts/{id}")
-	public String getBlog(@PathVariable Integer id, Model model) {
+	public String getBlog(@PathVariable int id, Model model) {
 		model.addAttribute("blog", blogService.getBlog(id));
 		model.addAttribute("posts", postService.getPosts(id));
 		return "blog/blogMain";

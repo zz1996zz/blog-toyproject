@@ -26,7 +26,6 @@ public class CategoryService {
 		return categoryRepository.findById(categoryId).get();
 	}
 	
-	@Transactional
 	public void insertCategory(Category category) {
 		categoryRepository.save(category);
 	}

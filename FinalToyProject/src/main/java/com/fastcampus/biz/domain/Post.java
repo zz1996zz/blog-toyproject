@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 
@@ -30,7 +31,7 @@ public class Post {
 	@CreationTimestamp
 	private Timestamp createdDate;
 	
-	@CreationTimestamp
+	@UpdateTimestamp
 	private Timestamp modifiedDate;
 	
 	private String title;

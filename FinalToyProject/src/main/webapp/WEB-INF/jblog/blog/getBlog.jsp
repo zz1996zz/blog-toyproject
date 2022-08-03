@@ -11,7 +11,7 @@
 			<!-- 메뉴 시작 --> 
 			<b>기본설정</b>&nbsp;&nbsp;
 			<a href="/category/getCategoryList/${blog.blogId }/insert"><b>카테고리</b></a>&nbsp;&nbsp;
-			<a href="#"><b>글작성</b></a>&nbsp;&nbsp;
+			<a href="/posts/insert/${blog.blogId }"><b>글작성</b></a>&nbsp;&nbsp;
 			<c:choose>
 				<c:when test="${blog.status == '운영' }"><a href="/blog/delete/${blog.blogId }"><b>블로그삭제</b></a>&nbsp;&nbsp;</c:when>
 				<c:when test="${blog.status == '삭제요청' }"><a href="/blog/delete/${blog.blogId }"><b>블로그삭제취소</b></a>&nbsp;&nbsp;</c:when>
