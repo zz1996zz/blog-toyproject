@@ -8,7 +8,7 @@ import com.fastcampus.biz.domain.Blog;
 import com.fastcampus.biz.domain.Category;
 import com.fastcampus.biz.persistence.BlogRepository;
 import com.fastcampus.biz.persistence.CategoryRepository;
-import com.fastcampus.web.domain.UpdateBlog;
+import com.fastcampus.web.dto.UpdateBlog;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class BlogService {
 	private final PostService postService;
 	
 	@Transactional
-	public void insertBlog(String title, int userId) {
+	public void insertBlog(String title, Long userId) {
 		Blog blog = new Blog();
 		blog.setBlogId(userId);
 		blog.setStatus("운영");
@@ -44,19 +44,19 @@ public class BlogService {
 		blogRepository.save(blog);
 	}
 	
-	public Blog getBlog(int blogId) {
+	public Blog getBlog(Long blogId) {
 		return blogRepository.findById(blogId).get();
 	}
 	
 	@Transactional
-	public void updateBlog(int blogId, UpdateBlog updateBlog) {
+	public void updateBlog(Long blogId, UpdateBlog updateBlog) {
 		Blog blog = blogRepository.findById(blogId).get();
 		blog.setTitle(updateBlog.getTitle());
 		blog.setTag(updateBlog.getTag());
 	}
 	
 	@Transactional
-	public void changeBlogStatus(int blogId) {
+	public void changeBlogStatus(Long blogId) {
 		Blog blog = blogRepository.findById(blogId).get();
 		if (blog.getStatus().equals("운영")) {
 			blog.setStatus("삭제요청");			
@@ -66,7 +66,7 @@ public class BlogService {
 	}
 	
 	@Transactional
-	public void deleteBlog(int blogId) {
+	public void deleteBlog(Long blogId) {
 		blogRepository.deleteById(blogId);
 		categoryService.deleteCategoryByBlogId(blogId);
 		postService.deletePostByBlogId(blogId);

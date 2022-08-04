@@ -9,7 +9,7 @@ import com.fastcampus.biz.domain.Blog;
 
 
 @Repository
-public interface BlogRepository extends JpaRepository<Blog, Integer> {
+public interface BlogRepository extends JpaRepository<Blog, Long> {
 
 	List<Blog> findByTitleContains(String title);
 	List<Blog> findByTagContains(String tag); 

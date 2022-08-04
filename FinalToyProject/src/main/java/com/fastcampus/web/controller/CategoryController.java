@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fastcampus.biz.domain.Category;
 import com.fastcampus.biz.service.BlogService;
 import com.fastcampus.biz.service.CategoryService;
-import com.fastcampus.web.domain.UpdateCategory;
+import com.fastcampus.web.dto.UpdateCategory;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,14 +26,14 @@ public class CategoryController {
 	private final BlogService blogService;
 	
 	@GetMapping("/getCategoryList/{blogId}/insert")
-	public String getCategoryList(@PathVariable int blogId, Model model) {
+	public String getCategoryList(@PathVariable Long blogId, Model model) {
 		model.addAttribute("blog", blogService.getBlog(blogId));
 		model.addAttribute("categoryList", categoryService.getCategoryList(blogId));
 		return "category/getCategoryList";
 	}
 	
 	@GetMapping("/getCategory/{blogId}/update/{categoryId}")
-	public String getCategory(@PathVariable int blogId, @PathVariable int categoryId, Model model) {
+	public String getCategory(@PathVariable Long blogId, @PathVariable Long categoryId, Model model) {
 		model.addAttribute("blog", blogService.getBlog(blogId));
 		model.addAttribute("category", categoryService.getCategory(categoryId));
 		model.addAttribute("categoryList", categoryService.getCategoryList(blogId));
@@ -47,13 +47,13 @@ public class CategoryController {
 	}
 	
 	@PostMapping("/update/{blogId}/{categoryId}")
-	public String updateCategory(@PathVariable int categoryId, @ModelAttribute UpdateCategory updateCategory) {
+	public String updateCategory(@PathVariable Long categoryId, @ModelAttribute UpdateCategory updateCategory) {
 		categoryService.updateCategory(categoryId, updateCategory);
 		return "redirect:/category/getCategoryList/{blogId}/insert";
 	}
 	
 	@GetMapping("/{blogId}/{categoryId}")
-	public String deleteCategory(@PathVariable int categoryId) {
+	public String deleteCategory(@PathVariable Long categoryId) {
 		categoryService.deleteCategoryByCategoryId(categoryId);
 		return "redirect:/category/getCategoryList/{blogId}/insert";
 	}

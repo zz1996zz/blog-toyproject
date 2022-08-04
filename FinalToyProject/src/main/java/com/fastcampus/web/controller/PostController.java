@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fastcampus.biz.service.BlogService;
 import com.fastcampus.biz.service.CategoryService;
 import com.fastcampus.biz.service.PostService;
-import com.fastcampus.web.domain.RequestPost;
+import com.fastcampus.web.dto.RequestPost;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class PostController {
 	private final CategoryService categoryService;
 	
 	@GetMapping("/insert/{blogId}")
-	public String getInsertPost(@PathVariable int blogId, Model model) {
+	public String getInsertPost(@PathVariable Long blogId, Model model) {
 		model.addAttribute("blog", blogService.getBlog(blogId));
 		model.addAttribute("categoryList", categoryService.getCategoryList(blogId));
 		return "post/insertPost";
@@ -40,7 +40,7 @@ public class PostController {
 	}
 	
 	@GetMapping("/update/{blogId}/{postId}")
-	public String getUpdatePost(@PathVariable int blogId, @PathVariable int postId, Model model) {
+	public String getUpdatePost(@PathVariable Long blogId, @PathVariable Long postId, Model model) {
 		model.addAttribute("blog", blogService.getBlog(blogId));
 		model.addAttribute("post", postService.getPost(postId));
 		model.addAttribute("categoryList", categoryService.getCategoryList(blogId));
@@ -48,13 +48,13 @@ public class PostController {
 	}
 	
 	@PostMapping("/update/{blogId}/{postId}")
-	public String updatePost(@ModelAttribute RequestPost requestPost, @PathVariable int postId) {
+	public String updatePost(@ModelAttribute RequestPost requestPost, @PathVariable Long postId) {
 		postService.updatePost(postId, requestPost);
 		return "redirect:/blog/shortcuts/{blogId}";
 	}
 	
 	@GetMapping("/{blogId}/{postId}")
-	public String deletePost(@PathVariable int postId) {
+	public String deletePost(@PathVariable Long postId) {
 		postService.deletePostByPostId(postId);
 		return "redirect:/blog/shortcuts/{blogId}";
 	}

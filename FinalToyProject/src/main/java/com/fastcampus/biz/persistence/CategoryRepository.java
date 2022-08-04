@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.fastcampus.biz.domain.Category;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-	List<Category> findByBlogId(int blogId);
-	void deleteByBlogId(int blogId);
+	List<Category> findByBlogId(Long blogId);
+	void deleteByBlogId(Long blogId);
 }

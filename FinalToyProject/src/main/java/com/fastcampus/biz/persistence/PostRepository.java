@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.fastcampus.biz.domain.Post;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, Integer> {
+public interface PostRepository extends JpaRepository<Post, Long> {
 
-	List<Post> findByBlogId(int blogId);
-	List<Post> findByCategoryId(int categoryId); 
-	void deleteByBlogId(int blogId);
+	List<Post> findByBlogId(Long blogId);
+	List<Post> findByCategoryId(Long categoryId); 
+	void deleteByBlogId(Long blogId);
 }

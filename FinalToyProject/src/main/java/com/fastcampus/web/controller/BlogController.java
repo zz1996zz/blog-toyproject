@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fastcampus.biz.service.BlogService;
 import com.fastcampus.biz.service.CategoryService;
 import com.fastcampus.biz.service.PostService;
-import com.fastcampus.web.domain.UpdateBlog;
-import com.fastcampus.web.domain.UserInfo;
+import com.fastcampus.web.dto.UpdateBlog;
+import com.fastcampus.web.dto.UserInfo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -46,7 +46,7 @@ public class BlogController {
 	}
 	
 	@GetMapping("/shortcuts/{id}")
-	public String getBlog(@PathVariable int id, Model model) {
+	public String getBlog(@PathVariable Long id, Model model) {
 		model.addAttribute("blog", blogService.getBlog(id));
 		model.addAttribute("posts", postService.getPosts(id));
 		model.addAttribute("categoryList", categoryService.getCategoryList(id));
@@ -54,7 +54,7 @@ public class BlogController {
 	}
 	
 	@GetMapping("/shortcuts/{id}/{categoryId}")
-	public String getBlogByCategory(@PathVariable int id, @PathVariable int categoryId, Model model) {
+	public String getBlogByCategory(@PathVariable Long id, @PathVariable Long categoryId, Model model) {
 		model.addAttribute("blog", blogService.getBlog(id));
 		model.addAttribute("posts", postService.getPostsByCategoryId(categoryId));
 		model.addAttribute("categoryList", categoryService.getCategoryList(id));
@@ -62,31 +62,31 @@ public class BlogController {
 	}
 	
 	@GetMapping("/manage/{blogId}")
-	public String manage(@PathVariable int blogId, Model model) {
+	public String manage(@PathVariable Long blogId, Model model) {
 		model.addAttribute("blog", blogService.getBlog(blogId));
 		return "blog/getBlog";
 	}
 	
 	@PostMapping("/update/{id}")
-	public String updateBlog(@PathVariable int id, @ModelAttribute UpdateBlog updateBlog) {
+	public String updateBlog(@PathVariable Long id, @ModelAttribute UpdateBlog updateBlog) {
 		blogService.updateBlog(id, updateBlog);
 		return "redirect:/blog/shortcuts/{id}";
 	}
 	
 	@GetMapping("/status/{blogId}")
-	public String isChangeBlogStatus(@PathVariable int blogId, Model model) {
+	public String isChangeBlogStatus(@PathVariable Long blogId, Model model) {
 		model.addAttribute("blog", blogService.getBlog(blogId));
 		return "blog/deleteRequest";
 	}
 	
 	@PostMapping("/status/{blogId}")
-	public String changeBlogStatus(@PathVariable int blogId) {
+	public String changeBlogStatus(@PathVariable Long blogId) {
 		blogService.changeBlogStatus(blogId);
 		return "redirect:/blog/shortcuts/{blogId}";
 	}
 	
 	@GetMapping("/{blogId}")
-	public String deleteBlog(@PathVariable int blogId) {
+	public String deleteBlog(@PathVariable Long blogId) {
 		blogService.deleteBlog(blogId);
 		return "redirect:/";
 	}

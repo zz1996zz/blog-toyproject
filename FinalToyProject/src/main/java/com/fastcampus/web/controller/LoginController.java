@@ -15,7 +15,7 @@ import com.fastcampus.biz.domain.Blog;
 import com.fastcampus.biz.domain.BlogUser;
 import com.fastcampus.biz.persistence.BlogRepository;
 import com.fastcampus.biz.persistence.BlogUserRepository;
-import com.fastcampus.web.domain.UserInfo;
+import com.fastcampus.web.dto.UserInfo;
 
 import lombok.RequiredArgsConstructor;
 

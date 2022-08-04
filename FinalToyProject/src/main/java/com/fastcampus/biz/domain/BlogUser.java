@@ -13,17 +13,17 @@ import lombok.Data;
 public class BlogUser {
 
 	@Id
-	private int userId;
+	private Long userId;
 	
-	@Column(nullable = false)
+	@Column(name = "NAME", nullable = false)
 	private String name;
 	
-	@Column(nullable = false)
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 	
-	@Column(nullable = false)
+	@Column(name = "ROLE", nullable = false)
 	private String role;
 	
-	@Column(nullable = false)
+	@Column(name = "USERNAME", nullable = false)
 	private String username;
 }

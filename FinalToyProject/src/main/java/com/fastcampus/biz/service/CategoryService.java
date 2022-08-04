@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fastcampus.biz.domain.Category;
 import com.fastcampus.biz.persistence.CategoryRepository;
-import com.fastcampus.web.domain.UpdateCategory;
+import com.fastcampus.web.dto.UpdateCategory;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,11 +18,11 @@ public class CategoryService {
 
 	private final CategoryRepository categoryRepository;
 	
-	public List<Category> getCategoryList(int blogId) {
+	public List<Category> getCategoryList(Long blogId) {
 		return categoryRepository.findByBlogId(blogId);
 	}
 	
-	public Category getCategory(int categoryId) {
+	public Category getCategory(Long categoryId) {
 		return categoryRepository.findById(categoryId).get();
 	}
 	
@@ -31,7 +31,7 @@ public class CategoryService {
 	}
 	
 	@Transactional
-	public void updateCategory(int categoryId, UpdateCategory updateCategory) {
+	public void updateCategory(Long categoryId, UpdateCategory updateCategory) {
 		Category category = categoryRepository.findById(categoryId).get();
 		category.setCategoryName(updateCategory.getCategoryName());
 		category.setDescription(updateCategory.getDescription());
@@ -39,11 +39,11 @@ public class CategoryService {
 	}
 	
 	@Transactional
-	public void deleteCategoryByCategoryId(int categoryId) {
+	public void deleteCategoryByCategoryId(Long categoryId) {
 		categoryRepository.deleteById(categoryId);
 	}
 	
-	public void deleteCategoryByBlogId(int blogId) {
+	public void deleteCategoryByBlogId(Long blogId) {
 		categoryRepository.deleteByBlogId(blogId);
 	}
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.fastcampus.biz.domain.BlogUser;
 
 @Repository
-public interface BlogUserRepository extends JpaRepository<BlogUser, Integer> {
+public interface BlogUserRepository extends JpaRepository<BlogUser, Long> {
 
 	Optional<BlogUser> findByUsername(String Username);
 }
