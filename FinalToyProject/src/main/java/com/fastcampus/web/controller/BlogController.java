@@ -17,7 +17,7 @@ import com.fastcampus.biz.service.BlogService;
 import com.fastcampus.biz.service.CategoryService;
 import com.fastcampus.biz.service.PostService;
 import com.fastcampus.web.dto.UpdateBlog;
-import com.fastcampus.web.dto.UserInfo;
+import com.fastcampus.web.dto.ResponseUserInfo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,7 +39,7 @@ public class BlogController {
 	public String insertBlog(@RequestParam String title, HttpServletRequest request) {
 		if (!title.strip().isBlank()) {
 			HttpSession session = request.getSession(false);
-			UserInfo userInfo = (UserInfo) session.getAttribute("loginUser");
+			ResponseUserInfo userInfo = (ResponseUserInfo) session.getAttribute("loginUser");
 			blogService.insertBlog(title.strip(), userInfo.getUserId());
 		}
 		return "redirect:/";

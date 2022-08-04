@@ -35,10 +35,10 @@
 				</c:forEach>
 				<c:choose>
 					<c:when test="${loginUser == null }">
-						<a href="/login"><b>로그인</b></a>&nbsp;&nbsp;
+						<a href="/users/login"><b>로그인</b></a>&nbsp;&nbsp;
 					</c:when>
 					<c:when test="${loginUser != null }">
-						<a href="/logout"><b>로그아웃</b></a>&nbsp;&nbsp;
+						<a href="/users/logout"><b>로그아웃</b></a>&nbsp;&nbsp;
 					</c:when>
 				</c:choose>
 				<c:choose>
