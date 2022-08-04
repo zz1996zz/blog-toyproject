@@ -10,11 +10,11 @@
 		<td width="530" valign="top">
 			<!-- 메뉴 시작 --> 
 			<b>기본설정</b>&nbsp;&nbsp;
-			<a href="/category/getCategoryList/${blog.blogId }/insert"><b>카테고리</b></a>&nbsp;&nbsp;
+			<a href="/categories/getCategoryList/${blog.blogId }/insert"><b>카테고리</b></a>&nbsp;&nbsp;
 			<a href="/posts/insert/${blog.blogId }"><b>글작성</b></a>&nbsp;&nbsp;
 			<c:choose>
-				<c:when test="${blog.status == '운영' }"><a href="/blog/status/${blog.blogId }"><b>블로그삭제</b></a>&nbsp;&nbsp;</c:when>
-				<c:when test="${blog.status == '삭제요청' }"><a href="/blog/status/${blog.blogId }"><b>블로그삭제취소</b></a>&nbsp;&nbsp;</c:when>
+				<c:when test="${blog.status == '운영' }"><a href="/blogs/status/${blog.blogId }"><b>블로그삭제</b></a>&nbsp;&nbsp;</c:when>
+				<c:when test="${blog.status == '삭제요청' }"><a href="/blogs/status/${blog.blogId }"><b>블로그삭제취소</b></a>&nbsp;&nbsp;</c:when>
 			</c:choose>
 			
 			<!-- 메뉴 끝 -->
@@ -24,7 +24,7 @@
 	<tr><td height="10">&nbsp;</td>
 		<td>
 			<!-- 작업 화면  시작 -->
-			<form action="/blog/update/${blog.blogId }" method="post">
+			<form action="/blogs/update/${blog.blogId }" method="post">
 			<table width="720" border="0" cellpadding="1" cellspacing="1">
 				<tr>
 					<td width="150">블로그 제목 :</td>

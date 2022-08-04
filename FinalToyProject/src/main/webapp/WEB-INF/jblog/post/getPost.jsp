@@ -8,8 +8,8 @@
 		<td height="10" width="20">&nbsp;</td>
 		<td width="530" valign="top">
 		<!-- 메뉴 시작 --> 
-		<a href="/blog/manage/${blog.blogId }"><b>기본설정</b></a>&nbsp;&nbsp;
-		<a href="/category/getCategoryList/${blog.blogId }/insert"><b>카테고리</b></a>&nbsp;&nbsp;
+		<a href="/blogs/manage/${blog.blogId }"><b>기본설정</b></a>&nbsp;&nbsp;
+		<a href="/categories/getCategoryList/${blog.blogId }/insert"><b>카테고리</b></a>&nbsp;&nbsp;
 		<b>글작성</b>&nbsp;&nbsp; 
 		<a href="javascript:popup();"><b>블로그삭제</b></a>&nbsp;&nbsp;
 		<!-- 메뉴 끝 -->

@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fastcampus.biz.service.BlogService;
 import com.fastcampus.biz.service.CategoryService;
 import com.fastcampus.biz.service.PostService;
-import com.fastcampus.web.dto.UpdateBlog;
+import com.fastcampus.web.dto.RequestBlog;
 import com.fastcampus.web.dto.ResponseUserInfo;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/blog")
+@RequestMapping("/blogs")
 @RequiredArgsConstructor
 public class BlogController {
 
@@ -45,15 +44,15 @@ public class BlogController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/shortcuts/{id}")
-	public String getBlog(@PathVariable Long id, Model model) {
-		model.addAttribute("blog", blogService.getBlog(id));
-		model.addAttribute("posts", postService.getPosts(id));
-		model.addAttribute("categoryList", categoryService.getCategoryList(id));
+	@GetMapping("/blog/{blogId}")
+	public String getBlog(@PathVariable Long blogId, Model model) {
+		model.addAttribute("blog", blogService.getBlog(blogId));
+		model.addAttribute("posts", postService.getPosts(blogId));
+		model.addAttribute("categoryList", categoryService.getCategoryList(blogId));
 		return "blog/blogMain";
 	}
 	
-	@GetMapping("/shortcuts/{id}/{categoryId}")
+	@GetMapping("/blog/{id}/{categoryId}")
 	public String getBlogByCategory(@PathVariable Long id, @PathVariable Long categoryId, Model model) {
 		model.addAttribute("blog", blogService.getBlog(id));
 		model.addAttribute("posts", postService.getPostsByCategoryId(categoryId));
@@ -67,10 +66,10 @@ public class BlogController {
 		return "blog/getBlog";
 	}
 	
-	@PostMapping("/update/{id}")
-	public String updateBlog(@PathVariable Long id, @ModelAttribute UpdateBlog updateBlog) {
-		blogService.updateBlog(id, updateBlog);
-		return "redirect:/blog/shortcuts/{id}";
+	@PostMapping("/update/{blogId}")
+	public String updateBlog(@PathVariable Long blogId, @ModelAttribute RequestBlog requestBlog) {
+		blogService.updateBlog(blogId, requestBlog);
+		return "redirect:/blogs/blog/{blogId}";
 	}
 	
 	@GetMapping("/status/{blogId}")
@@ -82,7 +81,7 @@ public class BlogController {
 	@PostMapping("/status/{blogId}")
 	public String changeBlogStatus(@PathVariable Long blogId) {
 		blogService.changeBlogStatus(blogId);
-		return "redirect:/blog/shortcuts/{blogId}";
+		return "redirect:/blogs/blog/{blogId}";
 	}
 	
 	@GetMapping("/{blogId}")

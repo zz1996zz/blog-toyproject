@@ -8,12 +8,12 @@
 	<tr><td height="10" width="20">&nbsp;</td>
 		<td width="530" valign="top">
 			<!-- 메뉴 시작 --> 
-			<a href="/blog/manage/${blog.blogId }"><b>기본설정</b></a>&nbsp;&nbsp;
+			<a href="/blogs/manage/${blog.blogId }"><b>기본설정</b></a>&nbsp;&nbsp;
 			<b>카테고리</b>&nbsp;&nbsp;
 			<a href="/posts/insert/${blog.blogId }"><b>글작성</b></a>&nbsp;&nbsp; 
 			<c:choose>
-				<c:when test="${blog.status == '운영' }"><a href="/blog/delete/${blog.blogId }"><b>블로그삭제</b></a>&nbsp;&nbsp;</c:when>
-				<c:when test="${blog.status == '삭제요청' }"><a href="/blog/delete/${blog.blogId }"><b>블로그삭제취소</b></a>&nbsp;&nbsp;</c:when>
+				<c:when test="${blog.status == '운영' }"><a href="/blogs/delete/${blog.blogId }"><b>블로그삭제</b></a>&nbsp;&nbsp;</c:when>
+				<c:when test="${blog.status == '삭제요청' }"><a href="/blogs/delete/${blog.blogId }"><b>블로그삭제취소</b></a>&nbsp;&nbsp;</c:when>
 			</c:choose>
 			<!-- 메뉴 끝 -->
 		</td>
@@ -34,7 +34,7 @@
 					<td align="center">${status.count }</td>	
 					<c:choose>
 						<c:when test="${cg.categoryName == '미분류' }"><td>${cg.categoryName }</td></c:when>
-						<c:when test="${cg.categoryName != '미분류' }"><td><a href="/category/getCategory/${blog.blogId }/update/${cg.categoryId }">${cg.categoryName }</a></td></c:when>
+						<c:when test="${cg.categoryName != '미분류' }"><td><a href="/categories/getCategory/${blog.blogId }/update/${cg.categoryId }">${cg.categoryName }</a></td></c:when>
 					</c:choose>
 					
 					<c:choose>
@@ -45,7 +45,7 @@
 					<c:choose>
 						<c:when test="${cg.categoryName == '미분류' }"><td align="center">&nbsp;삭제불가</td></c:when>
 						<c:when test="${cg.categoryName != '미분류' }">
-							<td align="center">&nbsp;<a href="/category/${blog.blogId }/${cg.categoryId }"><img height="9" src="/images/delete.jpg" border="0"></a></td>
+							<td align="center">&nbsp;<a href="/categories/${blog.blogId }/${cg.categoryId }"><img height="9" src="/images/delete.jpg" border="0"></a></td>
 						</c:when>
 					</c:choose>
 				</tr>
@@ -56,7 +56,7 @@
 	<c:set var="path" value="${requestScope['javax.servlet.forward.servlet_path'] }"/>
 	<c:choose>
 		<c:when test="${fn:contains(path, 'insert') }">
-			<form action="/category/insert/${blog.blogId }" method="post">
+			<form action="/categories/insert/${blog.blogId }" method="post">
 				<table width="720" border="0" cellpadding="1" cellspacing="1">
 					<tr><td height="5">&nbsp;</td></tr>
 					<tr><td height="5">&nbsp;</td></tr>
@@ -84,7 +84,7 @@
 			</form>
 		</c:when>
 		<c:when test="${fn:contains(path, 'update') }">
-			<form action="/category/update/${blog.blogId }/${category.categoryId }" method="post">
+			<form action="/categories/update/${blog.blogId }/${category.categoryId }" method="post">
 				<table width="720" border="0" cellpadding="1" cellspacing="1">
 					<tr><td height="5">&nbsp;</td></tr>
 					<tr><td height="5">&nbsp;</td></tr>

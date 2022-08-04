@@ -14,9 +14,7 @@ import com.fastcampus.biz.service.PostService;
 import com.fastcampus.web.dto.RequestPost;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequestMapping("/posts")
 @RequiredArgsConstructor
@@ -36,7 +34,7 @@ public class PostController {
 	@PostMapping("/insert/{blogId}")
 	public String insertPost(@ModelAttribute RequestPost requestPost) {
 		postService.insertPost(requestPost);
-		return "redirect:/blog/shortcuts/{blogId}";
+		return "redirect:/blogs/blog/{blogId}";
 	}
 	
 	@GetMapping("/update/{blogId}/{postId}")
@@ -50,12 +48,12 @@ public class PostController {
 	@PostMapping("/update/{blogId}/{postId}")
 	public String updatePost(@ModelAttribute RequestPost requestPost, @PathVariable Long postId) {
 		postService.updatePost(postId, requestPost);
-		return "redirect:/blog/shortcuts/{blogId}";
+		return "redirect:/blogs/blog/{blogId}";
 	}
 	
 	@GetMapping("/{blogId}/{postId}")
 	public String deletePost(@PathVariable Long postId) {
 		postService.deletePostByPostId(postId);
-		return "redirect:/blog/shortcuts/{blogId}";
+		return "redirect:/blogs/blog/{blogId}";
 	}
 }

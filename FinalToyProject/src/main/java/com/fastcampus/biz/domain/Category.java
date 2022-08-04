@@ -8,10 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "CATEGORY")
+@NoArgsConstructor
 public class Category {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +30,11 @@ public class Category {
 	
 	@Column(name = "DISPLAYTYPE")
 	private String displayType; //TITLE or MIXED
+	
+	public Category(Long blogId, String categoryName, String description, String displayType) {
+		this.blogId = blogId;
+		this.categoryName = categoryName;
+		this.description = description;
+		this.displayType = displayType;
+	}
 }

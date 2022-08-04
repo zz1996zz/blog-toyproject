@@ -42,7 +42,7 @@
 			<tr><td><b>카테고리</b></td></tr>
 			<c:forEach var="cg" items="${categoryList }">
 				<tr>
-					<td><a href="/blog/shortcuts/${blog.blogId }/${cg.categoryId }"><b>${cg.categoryName }</b></a></td>
+					<td><a href="/blogs/blog/${blog.blogId }/${cg.categoryId }"><b>${cg.categoryName }</b></a></td>
 				</tr>
 			</c:forEach>
 			<tr><td height="5">&nbsp;</td></tr>

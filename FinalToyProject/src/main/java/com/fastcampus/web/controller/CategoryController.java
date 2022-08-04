@@ -8,17 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fastcampus.biz.domain.Category;
 import com.fastcampus.biz.service.BlogService;
 import com.fastcampus.biz.service.CategoryService;
-import com.fastcampus.web.dto.UpdateCategory;
+import com.fastcampus.web.dto.RequestCategory;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
-@RequestMapping("/category")
+@RequestMapping("/categories")
 @RequiredArgsConstructor
 public class CategoryController {
 
@@ -41,20 +38,20 @@ public class CategoryController {
 	}
 	
 	@PostMapping("/insert/{blogId}")
-	public String insertCategory(@ModelAttribute Category category) {
-		categoryService.insertCategory(category);
-		return "redirect:/category/getCategoryList/{blogId}/insert";
+	public String insertCategory(@ModelAttribute RequestCategory requestCategory) {
+		categoryService.insertCategory(requestCategory);
+		return "redirect:/categories/getCategoryList/{blogId}/insert";
 	}
 	
 	@PostMapping("/update/{blogId}/{categoryId}")
-	public String updateCategory(@PathVariable Long categoryId, @ModelAttribute UpdateCategory updateCategory) {
-		categoryService.updateCategory(categoryId, updateCategory);
-		return "redirect:/category/getCategoryList/{blogId}/insert";
+	public String updateCategory(@PathVariable Long categoryId, @ModelAttribute RequestCategory requestCategory) {
+		categoryService.updateCategory(categoryId, requestCategory);
+		return "redirect:/categories/getCategoryList/{blogId}/insert";
 	}
 	
 	@GetMapping("/{blogId}/{categoryId}")
 	public String deleteCategory(@PathVariable Long categoryId) {
 		categoryService.deleteCategoryByCategoryId(categoryId);
-		return "redirect:/category/getCategoryList/{blogId}/insert";
+		return "redirect:/categories/getCategoryList/{blogId}/insert";
 	}
 }

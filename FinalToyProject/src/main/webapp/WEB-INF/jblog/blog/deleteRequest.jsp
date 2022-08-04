@@ -15,7 +15,7 @@
 </head>
 <body>
 <center>
-	<form action="/blog/status/${blog.blogId }" method="post">
+	<form action="/blogs/status/${blog.blogId }" method="post">
 	<table width="450" height="100" border="0" cellpadding="0" cellspacing="0">
 		<c:choose>
 			<c:when test="${blog.status == '운영' }">

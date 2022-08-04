@@ -30,13 +30,8 @@ public class PostService {
 		return postRepository.findByCategoryId(categoryId);
 	}
 	
-	public void insertPost(RequestPost requestPost) {
-		Post post = new Post();
-		post.setBlogId(requestPost.getBlogId());
-		post.setCategoryId(requestPost.getCategoryId());
-		post.setContent(requestPost.getContent());
-		post.setTitle(requestPost.getTitle());
-		
+	public void insertPost(RequestPost rp) {
+		Post post = new Post(rp.getBlogId(), rp.getCategoryId(), rp.getContent(), rp.getTitle());
 		postRepository.save(post);
 	}
 	

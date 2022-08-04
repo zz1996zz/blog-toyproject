@@ -5,42 +5,21 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.fastcampus.biz.domain.Blog;
-import com.fastcampus.biz.domain.Category;
 import com.fastcampus.biz.persistence.BlogRepository;
-import com.fastcampus.biz.persistence.CategoryRepository;
-import com.fastcampus.web.dto.UpdateBlog;
+import com.fastcampus.web.dto.RequestBlog;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BlogService {
 
 	private final BlogRepository blogRepository;
-	private final CategoryRepository categoryRepository;
 	private final CategoryService categoryService;
 	private final PostService postService;
 	
-	@Transactional
 	public void insertBlog(String title, Long userId) {
-		Blog blog = new Blog();
-		blog.setBlogId(userId);
-		blog.setStatus("운영");
-		blog.setTag("No tag");
-		blog.setTitle(title);
-		
-		Category category = new Category();
-		category.setBlogId(userId);
-		category.setCategoryName("미분류");
-		category.setDescription("기본으로 제공되는 카테고리입니다.");
-		category.setDisplayType("MIXED");
-		
-		log.info("blog={}", blog.toString());
-		log.info("category={}", category.toString());
-		
-		categoryRepository.save(category);
+		Blog blog = new Blog(userId, "운영", "No tag", title);
 		blogRepository.save(blog);
 	}
 	
@@ -49,7 +28,7 @@ public class BlogService {
 	}
 	
 	@Transactional
-	public void updateBlog(Long blogId, UpdateBlog updateBlog) {
+	public void updateBlog(Long blogId, RequestBlog updateBlog) {
 		Blog blog = blogRepository.findById(blogId).get();
 		blog.setTitle(updateBlog.getTitle());
 		blog.setTag(updateBlog.getTag());
