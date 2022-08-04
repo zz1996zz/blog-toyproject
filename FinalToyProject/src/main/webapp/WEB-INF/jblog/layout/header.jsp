@@ -22,6 +22,7 @@
 			<!-- 블로그 제목과 태그 끝 -->
 			<tr align="right">
 				<td>
+					<a href="/">홈</a>&nbsp;&nbsp;
 				<c:choose>
 					<c:when test="${loginUser == null }"><a href="/users/login">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</c:when>
 					<c:when test="${loginUser != null }"><a href="/users/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;&nbsp;</c:when>

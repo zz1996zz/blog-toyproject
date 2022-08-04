@@ -1,5 +1,8 @@
 package com.fastcampus.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fastcampus.biz.domain.Blog;
 import com.fastcampus.biz.persistence.BlogRepository;
+import com.fastcampus.web.dto.ResponseUserInfo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,13 +24,33 @@ public class WelcomeController {
 	private final BlogRepository blogRepository;
 
 	@GetMapping
-	public String welcome(Model model) {
+	public String welcome(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			ResponseUserInfo userInfo = (ResponseUserInfo) session.getAttribute("loginUser");
+			if (userInfo != null) {
+				Blog blog = blogRepository.findById(userInfo.getUserId()).orElse(null);
+				model.addAttribute("blog", blog);								
+			}
+		} else {
+			model.addAttribute("blog", null);
+		}
 		model.addAttribute("blogList", blogRepository.findAll());
 		return "welcome";
 	}
 
 	@PostMapping
-	public String findBlog(@RequestParam String searchCondition, @RequestParam String searchKeyword, Model model) {
+	public String findBlog(@RequestParam String searchCondition, @RequestParam String searchKeyword, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			ResponseUserInfo userInfo = (ResponseUserInfo) session.getAttribute("loginUser");
+			if (userInfo != null) {
+				Blog blog = blogRepository.findById(userInfo.getUserId()).orElse(null);
+				model.addAttribute("blog", blog);								
+			}
+		} else {
+			model.addAttribute("blog", null);
+		}
 		if (searchKeyword.isBlank()) {
 			model.addAttribute("blogList", blogRepository.findAll());
 		} else if (searchCondition.equals(searchCondition)) {

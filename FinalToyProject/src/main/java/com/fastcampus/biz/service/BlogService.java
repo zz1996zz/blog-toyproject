@@ -21,6 +21,7 @@ public class BlogService {
 	public void insertBlog(String title, Long userId) {
 		Blog blog = new Blog(userId, "운영", "No tag", title);
 		blogRepository.save(blog);
+		categoryService.insertBasicCategory(userId);
 	}
 	
 	public Blog getBlog(Long blogId) {

@@ -17,7 +17,9 @@
 					<h3><font color="green">${post.title }</font></h3>
 					${post.content }<br>
 					</td>
-					<td align="right"><a href="/posts/update/${blog.blogId }/${post.postId}">수정</a> / <a href="/posts/${blog.blogId }/${post.postId }">삭제</a></td>
+					<c:if test="${sessionScope.loginUser.userId == post.blogId }">
+						<td align="right"><a href="/posts/update/${blog.blogId }/${post.postId}">수정</a> / <a href="/posts/${blog.blogId }/${post.postId }">삭제</a></td>
+					</c:if>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">

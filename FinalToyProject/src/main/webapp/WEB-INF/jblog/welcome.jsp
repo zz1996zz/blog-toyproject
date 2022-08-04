@@ -30,7 +30,7 @@
 			<c:set var="contains" value="false" />
 				<c:forEach var="blog" items="${blogList }">
 					<c:if test="${loginUser.userId == blog.blogId }">
-						<c:set var="contains" value="true" />
+						<c:set var="haveBlog" value="true" />
 					</c:if>
 				</c:forEach>
 				<c:choose>
@@ -42,10 +42,10 @@
 					</c:when>
 				</c:choose>
 				<c:choose>
-					<c:when test="${loginUser != null && contains == false }">
+					<c:when test="${(loginUser != null && haveBlog == false) || (loginUser != null && blog == null)}">
 						<a href="/blogs/insert"><b>블로그등록</b></a>&nbsp;&nbsp;
 					</c:when>
-					<c:when test="${loginUser != null && contains == true }">
+					<c:when test="${(loginUser != null && haveBlog == true) || (loginUser != null && blog != null) }">
 						<a href="/blogs/blog/${loginUser.userId }"><b>블로그바로가기</b></a>&nbsp;&nbsp;
 					</c:when>
 				</c:choose>
