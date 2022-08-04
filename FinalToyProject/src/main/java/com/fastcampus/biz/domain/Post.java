@@ -1,16 +1,20 @@
 package com.fastcampus.biz.domain;
 
-import java.sql.Timestamp;
+
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "POST")
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,16 +35,17 @@ public class Post {
 	@Column(name = "CATEGORYID", nullable = false)
 	private Long categoryId;
 	
+	@Lob
 	@Column(name = "CONTENT")
 	private String content;
 	
 	@Column(name = "CREATEDDATE")
-	@CreationTimestamp
-	private Timestamp createdDate;
+	@CreatedDate
+	private LocalDate createdDate;
 	
 	@Column(name = "MODIFIEDDATE")
-	@UpdateTimestamp
-	private Timestamp modifiedDate;
+	@LastModifiedDate
+	private LocalDate modifiedDate;
 	
 	@Column(name = "TITLE")
 	private String title;
