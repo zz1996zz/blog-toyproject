@@ -25,32 +25,14 @@ public class WelcomeController {
 
 	@GetMapping
 	public String welcome(Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			ResponseUserInfo userInfo = (ResponseUserInfo) session.getAttribute("loginUser");
-			if (userInfo != null) {
-				Blog blog = blogRepository.findById(userInfo.getUserId()).orElse(null);
-				model.addAttribute("blog", blog);								
-			}
-		} else {
-			model.addAttribute("blog", null);
-		}
+		hasBlog(request, model);
 		model.addAttribute("blogList", blogRepository.findAll());
 		return "welcome";
 	}
 
 	@PostMapping
 	public String findBlog(@RequestParam String searchCondition, @RequestParam String searchKeyword, Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			ResponseUserInfo userInfo = (ResponseUserInfo) session.getAttribute("loginUser");
-			if (userInfo != null) {
-				Blog blog = blogRepository.findById(userInfo.getUserId()).orElse(null);
-				model.addAttribute("blog", blog);								
-			}
-		} else {
-			model.addAttribute("blog", null);
-		}
+		hasBlog(request, model);
 		if (searchKeyword.isBlank()) {
 			model.addAttribute("blogList", blogRepository.findAll());
 		} else if (searchCondition.equals(searchCondition)) {
@@ -59,5 +41,18 @@ public class WelcomeController {
 			model.addAttribute("blogList", blogRepository.findByTagContains(searchKeyword));
 		}
 		return "welcome";
+	}
+	
+	private void hasBlog(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			ResponseUserInfo userInfo = (ResponseUserInfo) session.getAttribute("loginUser");
+			if (userInfo != null) {
+				Blog blog = blogRepository.findById(userInfo.getUserId()).orElse(null);
+				model.addAttribute("blog", blog);								
+			}
+		} else {
+			model.addAttribute("blog", null);
+		}
 	}
 }
