@@ -5,8 +5,9 @@
 블로그 등록 및 블로그 검색, 블로그에 게시글 작성 및 삭제 기능 등이 있다.
 
 ## Environment
+- Java 11
 - Eclipse
-- H2 database
+- H2 database(2.1.212)
 - SpringBoot
 - Spring Data JPA
 - JSP
